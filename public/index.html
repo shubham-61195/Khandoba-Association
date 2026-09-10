@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ખાતાવહી</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- LOGIN SCREEN -->
+<div id="loginScreen" class="login-wrap">
+  <div class="login-card">
+    <h1>ખાતાવહી</h1>
+    <div class="sub">લોગિન કરો</div>
+    <label for="loginUser">યુઝરનેમ</label>
+    <input type="text" id="loginUser" autocomplete="username">
+    <label for="loginPass">પાસવર્ડ</label>
+    <input type="password" id="loginPass" autocomplete="current-password">
+    <button class="primary" id="loginBtn">લોગિન</button>
+    <div class="error" id="loginError"></div>
+  </div>
+</div>
+
+<!-- APP SHELL -->
+<div id="appShell" style="display:none">
+  <header>
+    <div>
+      <h1 id="appTitle">ખાતાવહી</h1>
+      <div class="sub" id="whoAmI"></div>
+    </div>
+    <button id="logoutBtn" class="logout">લોગ આઉટ</button>
+  </header>
+
+  <main>
+    <!-- ENTRIES VIEW -->
+    <section class="view active" id="view-entries">
+      <div class="card">
+        <h2>નવી નોંધ ઉમેરો</h2>
+        <div class="seg" id="typeSeg">
+          <button data-type="expense" class="on">ખર્ચ</button>
+          <button data-type="received">રસીવ</button>
+        </div>
+        <label for="fCompany">કંપની</label>
+        <select id="fCompany"></select>
+        <label for="fUser" id="fUserLabel">કોણે</label>
+        <select id="fUser"></select>
+        <label for="fAmount">રકમ (₹)</label>
+        <input type="number" id="fAmount" inputmode="decimal" placeholder="દા.ત. 5000">
+        <label for="fDate">તારીખ</label>
+        <input type="date" id="fDate">
+        <label for="fNote">નોંધ (વૈકલ્પિક)</label>
+        <input type="text" id="fNote" placeholder="દા.ત. ટ્રાવેલ, ડોમેન રિન્યુઅલ...">
+        <button class="primary" id="saveBtn">ઉમેરો</button>
+      </div>
+      <div class="card">
+        <h2>તાજેતરની નોંધો</h2>
+        <div id="entriesList"></div>
+      </div>
+    </section>
+
+    <!-- BALANCE VIEW -->
+    <section class="view" id="view-balance">
+      <div class="card balance-hero" id="balanceHero"></div>
+      <div class="card">
+        <h2>કંપની પ્રમાણે</h2>
+        <table>
+          <thead><tr><th>કંપની</th><th class="num">ખર્ચ</th><th class="num">રસીવ</th><th class="num">નેટ</th></tr></thead>
+          <tbody id="companyTable"></tbody>
+        </table>
+      </div>
+      <div class="card">
+        <h2>ભાગીદાર પ્રમાણે</h2>
+        <table>
+          <thead><tr><th>નામ</th><th class="num">ખર્ચ કર્યો</th><th class="num">રસીવ કર્યું</th></tr></thead>
+          <tbody id="partnerTable"></tbody>
+        </table>
+        <div class="status">ડિફોલ્ટ ગણતરી 50–50 ભાગીદારી પ્રમાણે થાય છે.</div>
+      </div>
+    </section>
+
+    <!-- SETUP VIEW -->
+    <section class="view" id="view-setup">
+      <div class="card">
+        <h2>મારો પાસવર્ડ બદલો</h2>
+        <label for="newPass">નવો પાસવર્ડ</label>
+        <input type="password" id="newPass" placeholder="ઓછામાં ઓછા 6 અક્ષર">
+        <button class="primary" id="changePassBtn">પાસવર્ડ બદલો</button>
+        <div class="status" id="passStatus"></div>
+      </div>
+
+      <div class="card">
+        <h2>કંપનીઓ</h2>
+        <div class="chip-row" id="companyChips"></div>
+        <label for="newCompany">નવી કંપની ઉમેરો</label>
+        <input type="text" id="newCompany" placeholder="દા.ત. ABCD, PSP, Excel...">
+        <button class="ghost" id="addCompanyBtn">+ કંપની ઉમેરો</button>
+      </div>
+
+      <div class="card" id="adminUsersCard" style="display:none">
+        <h2>ભાગીદાર એકાઉન્ટ (Admin)</h2>
+        <div id="usersList"></div>
+        <label for="newPartnerName">નવા ભાગીદારનું નામ</label>
+        <input type="text" id="newPartnerName" placeholder="દા.ત. Rahul Patel">
+        <button class="ghost" id="addPartnerBtn">+ ભાગીદાર બનાવો</button>
+        <div id="newCredsBox" class="creds-box" style="display:none"></div>
+      </div>
+    </section>
+  </main>
+
+  <nav class="tabs">
+    <button data-view="entries" class="active">નોંધ</button>
+    <button data-view="balance">હિસાબ</button>
+    <button data-view="setup">સેટઅપ</button>
+  </nav>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
