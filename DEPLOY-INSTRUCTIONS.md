@@ -2,6 +2,14 @@
 
 આ Claude પર આધારિત નથી. એક વાર ડિપ્લોય કરી લો પછી કાયમ ચાલશે, ગમે તે બ્રાઉઝરમાં, ગમે ત્યાંથી.
 
+## ⚠️ અગત્યનું: પહેલા Database બનાવો (Neon.tech — મફત, કાયમી)
+પહેલા વર્ઝનમાં ડેટા Render ની પોતાની ડિસ્ક પર સેવ થતો હતો, જે **કાયમી નથી** — સર્વર રીસ્ટાર્ટ થાય એટલે ડેટા ગાયબ થઈ જાય. આ નવું વર્ઝન એક **અલગ, ખરેખર કાયમી ડેટાબેઝ** (Postgres) વાપરે છે. Deploy કરતા પહેલા આ ડેટાબેઝ બનાવવો જરૂરી છે:
+
+1. https://neon.tech પર જાવ, "Sign up" કરો (GitHub થી સાઇન અપ કરી શકાય, ક્રેડિટ કાર્ડ જરૂરી નથી).
+2. "Create a project" દબાવો, નામ આપો (દા.ત. `khatavahi-db`), "Create Project" દબાવો.
+3. Dashboard પર "Connection String" દેખાશે — એ આખી લિંક (જે `postgresql://...` થી શરૂ થાય છે) કોપી કરી લો. આ જ તમારો `DATABASE_URL` છે.
+4. આ લિંક સાચવી રાખો — Render પર Environment Variable તરીકે નાખવાની છે (નીચે સ્ટેપ 5 માં).
+
 ## શું છે આમાં
 - **CEO/Admin લોગિન** (તમે) — કંપનીઓ ઉમેરો, ભાગીદારના એકાઉન્ટ બનાવો (username+password ઓટોમેટિક જનરેટ થાય)
 - **2 ભાગીદાર લોગિન** — પોતાની નોંધ ઉમેરે, જુએ
@@ -24,6 +32,7 @@
    - **Build Command:** `npm install`
    - **Start Command:** `node server.js`
 5. "Environment Variables" માં ઉમેરો:
+   - `DATABASE_URL` = Neon.tech માંથી કોપી કરેલી Connection String (ઉપરનું સ્ટેપ જુઓ) — **આ સૌથી અગત્યનું છે**
    - `JWT_SECRET` = કોઈ પણ લાંબો રેન્ડમ શબ્દ (દા.ત. `myledger2026secretkey`)
    - `ADMIN_PASSWORD` = તમે ઇચ્છો એ પ્રથમ admin પાસવર્ડ
 6. "Create Web Service" દબાવો. 2-3 મિનિટમાં એક લિંક મળશે જેવી કે:
